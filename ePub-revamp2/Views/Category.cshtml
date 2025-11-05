@@ -1,0 +1,149 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Category>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/css/category-style.css")">
+<script src="@Url.Content("~/scripts/category-script.js")"></script>
+
+<style>
+    .ghost-container {
+        margin-left: 1px;
+        top: 24%;
+    }
+</style>
+
+<div class="content-area col-xl-11">
+
+    <span id="currentId"></span>
+
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="/" style="font-size:12px;">Home</a></li>
+            <li class="separator"><i class="fas fa-chevron-right" style="padding-left: 10px; font-size:12px;"></i></li>
+            <li class="active" style=" font-size: 12px;">
+                <button id="showAllBankingOperations" style="background-color:transparent;border:none; cursor:pointer; font-size: 12px; color: #004080;font-weight: 600;">
+                    @Model.Value("title")
+                </button>
+            </li>
+
+            <!-- Send Feedback Button -->
+            <button class="feedback-button" id="sendFeedbackBtn">
+                <i class="fas fa-comment-alt"></i> Send Feedback
+            </button>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="main-category-list">
+            <h2>@Model.Value("title")</h2>
+            <ul id="bankingOperationsList">
+
+                @{
+
+                    foreach (var child in Model.Children)
+                    {
+                        if (!child.Children().Any())
+                        {
+
+                            if (child?.Value<Umbraco.Web.Models.Link>("ManualPicker") != null)
+                            {
+                                var childlinks = child?.Value<Umbraco.Web.Models.Link>("ManualPicker");
+
+                                <li>
+                                    <div class="text-content">
+                                        <a class="contentTitle" style="text-decoration: none; color: #004080;" href="@childlinks.Url"> <h4>@child.Value("title")</h4> </a>
+                                    </div>
+                                </li>
+                            }
+
+                            else
+                            {
+                                <li>
+                                    <div class="text-content">
+                                        <a class="contentTitle" style="text-decoration: none; color: #004080;" href="#"> <h4>@child.Value("title")</h4> </a>
+                                    </div>
+                                </li>
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            <li class="has-dropdown">
+                                <div class="main-item-trigger">
+                                    <div class="text-content">
+                                        <h4><a class="contentTitle" href="@child.Url">@child.Value("title")</a></h4>
+                                    </div>
+                                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                                </div>
+                                <div class="subcategory-dropdown-content">
+                                    <ul>
+                                        @foreach (var underChild in child.Children)
+                                        {
+
+                                            var underChildlinks = underChild?.Value<Umbraco.Web.Models.Link>("manualPicker");
+
+                                            if (underChildlinks != null)
+                                            {
+                                                <li><a class="contentChild" href="@underChildlinks.Url">@underChild.Value("Title")</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a class="contentChild" href="#">@underChild.Value("Title")</a></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+
+                        }
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- The Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Send Us Your Feedback</h2>
+            <form id="feedbackForm">
+                <label for="feedbackName">Full Name:</label>
+                <input type="text" id="feedbackName" name="feedbackName">
+
+                <label for="lotusNode">Lotus Node Id:</label>
+                <input type="text" id="lotusNode" name="lotusNode">
+
+                <label for="branch">Branch/Div/Dept:</label>
+                <input type="text" id="branch" name="branch">
+
+                <label for="contact">Contact No:</label>
+                <input type="text" id="contact" name="contact">
+
+                <label for="manual">Manual/Section:</label>
+                <input type="text" id="manual" class="readonlyInput" name="manual" value="@Model.Value("title")" readonly>
+
+                <label for="feedbackMessage">Comments/Suggestion:</label>
+                <textarea id="feedbackMessage" name="feedbackMessage" required></textarea>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="search-result-area">
+
+        <div class="search-result" id="searchResults"></div>
+        <div class="pagination" id="pagination"></div>
+
+
+    </div>
+
+</div>

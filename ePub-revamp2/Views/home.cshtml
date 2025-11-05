@@ -1,0 +1,444 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+}
+
+
+
+
+@*<div class="most-searched-dropdown focus" id="mostSearchedDropdown" style="margin-top: 10px; top: 8%; display: block; z-index: 1000; position: absolute; left: 22%; width: 1160px;">
+    <div class="recomend-list">
+    </div>
+
+    <div id="recent-searches" class="recent-searches-box" style="display: none;">
+        <h4 style="margin: 0; padding-left: 30px;font-size: 14px; ">Recent Searches</h4>
+        <ul id="recent-search-list" style="margin-top: 5px; list-style-type: none; padding-left: 15px; line-height: 25px; margin-bottom: 0; padding-right: 15px; "></ul>
+    </div>
+
+</div>*@
+
+
+<div class="content-area" style="padding-top: 20px;">
+
+
+
+
+
+
+    <!--<nav class="nav-bar-middle" style="width: 100%;">
+
+        <div class="nav-element-middle">-->
+    @*<div class="nav-links" style="flex-direction:row; justify-content:center; margin-bottom:0;">
+
+            <a href="/banking-operations/e-manuals/" target="" style="font-size: 14px; padding:10px;">E-Manuals</a>
+            <a href="/manual/forms-documents-bpp-fdt/default/" style="font-size: 14px; padding: 10px;">Forms &amp; Documents</a>
+            <a href="/manual/pro/product-catalogue-guide/" style="font-size: 14px; padding: 10px;">Product Catalogue Guide</a>
+            <a href="/manual/pds/product-disclousre-sheet/" style="font-size: 14px; padding: 10px;">Product Disclousre Sheet</a>
+            <a href="/manual/pds/product-disclousre-sheet/" style="font-size: 14px; padding: 10px;">Product Disclousre Sheet</a>
+            <a href="/manual/pds/product-disclousre-sheet/" style="font-size: 14px; padding: 10px;">Product Disclousre Sheet</a>
+            <a href="/manual/pds/product-disclousre-sheet/" style="font-size: 14px; padding: 10px;">Product Disclousre Sheet</a>
+        </div>*@
+
+
+    <!--<div class="nav-links-middle" style="flex-direction: row; margin-bottom:0px; justify-content: center; padding-bottom: 10px;">
+
+                <a href="/banking-operations/e-manuals/" target="" style="font-size: 14px; padding:10px;">E-Manuals</a>
+                <a href="/manual/forms-documents-bpp-fdt/default/" style="font-size: 14px; padding: 10px;">Forms &amp; Documents</a>
+                <a href="/manual/pro/product-catalogue-guide/" style="font-size: 14px; padding: 10px;">Product Catalogue Guide</a>
+                <a href="/manual/pds/product-disclousre-sheet/" style="font-size: 14px; padding: 10px;">Product Disclousre Sheet</a>
+            </div>
+
+
+        </div>
+    </nav>-->
+
+
+
+
+
+
+
+
+
+
+    <div class="section-part pb-3 col-xl-12" style="margin-right:15px; background-color: #FAFBFC;">
+
+
+        <div class="navbar-container3 col-xl-12" style="padding-bottom:30px;">
+            <nav class="navbar3">
+                <div class="nav-item-text3"><i class="fas fa-bolt"></i> Quick Links</div>
+                <a href="#" class="nav-item3">E-Manuals</a>
+                <a href="#" class="nav-item3">Forms & Documents</a>
+                <a href="#" class="nav-item3">Product Catalogue Guide</a>
+                <a href="#" class="nav-item3">Product Disclosure Sheet</a>
+                <a href="#" class="nav-item3">Standard Pricing List</a>
+                <a href="#" class="nav-item3">Terms and Conditions</a>
+                <a href="#" class="nav-item3">Useful Links</a>
+                <a href="#" class="nav-item3">PBe</a>
+            </nav>
+        </div>
+
+
+        <section class="categorized-sections row justify-content-center gap-4 pb-4">
+            <div class="category-group pt-3 pb-3 col-xl-3 col-lg-3">
+                <h2>Core Banking &amp; Finance</h2>
+
+                <div class="category-cards-grid row pt-3 gap-4 d-flex justify-content-center">
+
+                    @{
+                        var count1 = 0;
+
+
+
+                        foreach (var category in Model.Children)
+                        {
+
+                            if (count1 == 9)
+                            {
+                                break;
+                            }
+                            if (!category.Name.Equals("Manual"))
+                            {
+
+
+                                <a href="@category.Url" class="card col-xl-5 col-5 p-3">
+                                    <div class="icon-bg">
+                                        <i style="font-size:1.2rem; z-index:3;" class="fas @category.Value("icon")"></i> <!-- Replace with actual icon/font -->
+                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 600; height: 3rem;" class="title">@category.Value("title")</div>
+                                </a>
+
+
+                                @*<a href="@category.Url" class="card2 card2-strategy col-xl-5 col-lg-5">
+                                    <div class="card2-icon">
+                                        <span class="icon-badge">
+                                            <i class="fas @category.Value("icon")"></i>
+                                        </span>
+                                    </div>
+                                    <div class="card2-content">
+                                        <div class="card2-title">@category.Value("title")</div>
+                                    </div>
+                                </a>*@
+                            }
+                            count1++;
+                        }
+
+                    }
+
+                </div>
+            </div>
+
+            <div class="category-group pt-3 pb-3 col-xl-3 col-lg-3">
+                <h2>Governance, Risk &amp; Compliance</h2>
+                <div class="category-cards-grid row pt-3 gap-4 d-flex justify-content-center">
+
+
+                    <!--<a href="#" class="card col-xl-5 col-5 p-4">
+                <div class="icon-bg">
+                    <i style="font-size:1.5rem; z-index:3;" class="fas fa-university"></i>-->
+                    <!-- Replace with actual icon/font -->
+                    <!--</div>
+                    <div style="font-size: 0.7rem; font-weight: 600;" class="title">Pbb bank and other banks rate</div>
+                </a>-->
+
+
+
+                    @{
+                        var count2 = 0;
+
+                        foreach (var category in Model.Children)
+                        {
+
+                            if (category.Key.Equals("0e47eee0-b49b-4908-b62a-a75ec613ca07"))
+                            {
+                                continue;
+                            }
+
+                            if (count2 < 9)
+                            {
+                                count2++;
+                                continue;
+                            }
+
+                            else if (count2 == 15)
+                            {
+                                break;
+                            }
+
+
+                            <a href="@category.Url" class="card col-xl-5 col-5 p-3">
+                                <div class="icon-bg">
+                                    <i style="font-size:1.2rem; z-index:3;" class="fas @category.Value("icon")"></i> <!-- Replace with actual icon/font -->
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 600; height:3rem;" class="title">@category.Value("title")</div>
+                            </a>
+
+
+
+                            @*<a href="@category.Url" class="card2 card2-strategy col-xl-5 col-lg-5">
+                                <div class="card2-icon">
+                                    <span class="icon-badge">
+                                        <i class="fas @category.Value("icon")"></i>
+                                    </span>
+                                </div>
+                                <div class="card2-content">
+                                    <div class="card2-title">@category.Value("title")</div>
+                                </div>
+                            </a>*@
+                            count2++;
+                        }
+
+                    }
+                </div>
+            </div>
+
+
+
+
+            <div class="category-group pt-3 pb-3 col-xl-3 col-xl-3">
+                <h2>Support &amp; Operations</h2>
+                <div class="category-cards-grid row pt-3 gap-4 d-flex justify-content-center">
+
+                    @{
+                        var count3 = 0;
+
+                        foreach (var category in Model.Children)
+
+                        {
+
+                            if (category.Key.Equals("0e47eee0-b49b-4908-b62a-a75ec613ca07"))
+                            {
+                                continue;
+                            }
+
+
+                            if (count3 < 15)
+                            {
+                                count3++;
+                                continue;
+                            }
+
+                            else if (count3 == 23)
+                            {
+                                break;
+                            }
+
+
+
+                            <a href="@category.Url" class="card col-xl-5 col-5 p-3">
+                                <div class="icon-bg">
+                                    <i style="font-size:1.2rem; z-index:3;" class="fas @category.Value("icon")"></i> <!-- Replace with actual icon/font -->
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 600; height: 3rem;" class="title">@category.Value("title")</div>
+                            </a>
+
+
+                            @*<a href="@category.Url" class="card2 card2-strategy col-xl-5 col-lg-5">
+                                <div class="card2-icon">
+                                    <span class="icon-badge">
+                                        <i class="fas @category.Value("icon")"></i>
+                                    </span>
+                                </div>
+                                <div class="card2-content">
+                                    <div class="card2-title">@category.Value("title")</div>
+                                </div>
+                            </a>*@
+                            count3++;
+                        }
+
+                    }
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="updates-container row pb-2" style="gap: 25px; padding-left: 3%; padding-right: 4%; margin-bottom: 60px;">
+            <div class="updates-image-wrapper" ">
+
+                @{
+                    var mediaSlider = Model.Value<IPublishedContent>("newsBanner");
+                    if (mediaSlider != null)
+                    {
+
+                        @Model.Value("mainImage")
+
+                        <div class="slider">
+                            <div class="slides">
+                                <img src="https://picsum.photos/400/250?random=1" alt="Random Updates Banner 1">
+                                <img src="https://picsum.photos/400/250?random=2" alt="Random Updates Banner 2">
+                                <img src="https://picsum.photos/400/250?random=3" alt="Random Updates Banner 3">
+                                <img src="https://picsum.photos/400/250?random=4" alt="Random Updates Banner 4">
+                            </div>
+                            <div class="slider-dots">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        var media = Model.Value<IPublishedContent>("mainImage");
+
+                        if (media != null)
+                        {
+                            // To get the URL for your media item, you use the Url method:
+                            var url = media.Url();
+
+                            <img class="menara" style="width:100%; border-radius:16px;" src="@url" alt="Public Bank menara">
+                        }
+                    }
+                }
+            </div>
+            <div class="updates-section pt-3">
+                <h2>
+                    Recent Updates & Messages
+                    <a href="#" class="archive-link">Archive</a>
+                </h2>
+                <div class="update-item" style="background-color: #f8f9fa">
+                    <div class="label">
+                        <span style="font-weight:600;"><a href="/manual/update-section/mypb-app-enhancements/" style="text-decoration: none;color: black;"> MyPB App Enhancements</a></span>
+                        <div class="status-group">
+                            <span class="status">Notice</span>
+                        </div>
+                    </div>
+                    <span class="date">25 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/updated-forms-document-templates/" style="text-decoration: none;color: black;">Updated Forms & Document Templates</a></span>
+                        <span class="status update">Update</span>
+                    </div>
+                    <span class="date">26 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/foreign-telegraphic-transfer-fee-adjustments/" style="text-decoration: none;color: black;">Foreign Telegraphic Transfer Fee Adjustments</a></span>
+                        <span class="status update">Update</span>
+                    </div>
+                    <span class="date">26 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/introduction-of-pb-qr-payment-options/" style="text-decoration: none;color: black;">Introduction of PB QR Payment Options</a></span>
+                        <span class="status new">New</span>
+                    </div>
+                    <span class="date">25 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/policy-on-sustainable-financing-framework/" style="text-decoration: none;color: black;">Policy on Sustainable Financing Framework</a></span>
+                        <span class="status new">New</span>
+                    </div>
+                    <span class="date">24 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/policy-on-anti-money-laundering-aml-and-counter-terrorism-financing-ctf/" style="text-decoration: none;color: black;"> Policy on Anti-Money Laundering (AML) and Counter-Terrorism Financing (CTF)</a></span>
+                        <span class="status new">New</span>
+                    </div>
+                    <span class="date">23 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/policy-on-responsible-lending-practices/" style="text-decoration: none;color: black;">Policy on Responsible Lending Practices</a></span>
+                        <span class="status update">Update</span>
+                    </div>
+                    <span class="date">22 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/policy-on-customer-complaint-handling-and-service-recovery/" style="text-decoration: none;color: black;">Policy on Customer Complaint Handling and Service Recovery</a></span>
+                        <span class="status update">Update</span>
+                    </div>
+                    <span class="date">20 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/policy-on-anti-money-laundering-aml-and-counter-terrorism-financing-ctf/" style="text-decoration: none;color: black;"> Policy on Anti-Money Laundering (AML) and Counter-Terrorism Financing (CTF)</a></span>
+                        <span class="status new">New</span>
+                    </div>
+                    <span class="date">23 June 2025</span>
+                </div>
+                <div class="update-item">
+                    <div class="label">
+                        <span><a href="/manual/update-section/foreign-telegraphic-transfer-fee-adjustments/" style="text-decoration: none;color: black;">Foreign Telegraphic Transfer Fee Adjustments</a></span>
+                        <span class="status update">Update</span>
+                    </div>
+                    <span class="date">26 June 2025</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="search-result-area col-xl-10 hide" style=" margin-top: 60px;">
+    <div class="filter-sort-options hide">
+        <label for="sortBySelect"><strong>Sort By:</strong></label>
+        <select class="results-count" id="sortBy">
+            <option value="relevance">Relevance</option>
+            <option value="title">Alphabetical (A-Z)</option>
+            <option value="date">Date (Oldest First)</option>
+            <option value="date_desc">Date (Newest First)</option>
+        </select>
+    </div>
+
+    @*<div class="filter-sort-options">
+            <div class="results-count" id="resultsCount"></div>
+            <div class="sort-by">
+                <label for="sortBySelect">Sort by:</label>
+                <select id="sortBySelect">
+                    <option value="score">Relevance</option>
+                    <option value="updatedate">Updated Date</option>
+                    <option value="date-desc">Date (Newest First)</option>
+                    <option value="date-asc">Date (Oldest First)</option>
+                    <option value="title">Title (A-Z)</option>
+                </select>
+            </div>
+        </div>*@
+
+
+
+
+    <div class="search-result" id="searchResults" style="margin-top:8px;"></div>
+    <div class="pagination" id="pagination"></div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"> <i class="fa-solid fa-arrow-up"></i> Go To Top</button>
+
+
+</div>
+
+<!-- New sticky links container -->
+<div class="sticky-links-bottom-left">
+
+
+
+</div>
+
+<script>
+
+    let mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+
+
+
+
+
+
+</script>
+
+

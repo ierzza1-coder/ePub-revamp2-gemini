@@ -1,0 +1,211 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ManualItem>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+}
+
+<style>
+
+    /*.logo-link {
+        width: 15%;*/
+        /* height: 15%; */
+    /*}
+
+    .page-title{
+        display:none;
+    }
+
+    .logo-img {
+        width: 60%;
+        padding: 12px 10px 10px 18px;
+    }
+
+    .nav-title2{
+        display:none;
+    }
+
+    .nav-title{
+        display:none;
+    }
+
+    .page-title{
+        margin-bottom:10px;
+    }
+
+    .img-w-title {
+        width: 15%;
+    }*/
+
+    .main-wrapper {
+        display: flex;
+        flex-grow: 1;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    /*.nav-bar {
+        overflow: hidden;
+        background-color: #FAFBFC;
+        width: 100%;*/
+        /* min-width: 250px; */
+        /*box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        border-right: 1px solid #e0e0e0;
+        padding-top: 10px;
+        gap: 5px;
+    
+    }
+
+
+        .nav-bar .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            width: 100%;
+            margin-bottom: 0px;
+        }
+
+            .nav-bar .nav-links a {
+                margin-top: 0px;
+                margin-bottom: 5px;
+            }*/
+
+
+
+
+    .bodyContent-area {
+        margin: 30px 20px 30px 20px;
+        background: white;
+        background-color: #ffffff;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+        border-radius: .25rem;
+    }
+
+    .content-part{
+        padding:1.25rem;
+    }
+
+
+    .breadcrumbs {
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        font-size: 0.9em;
+        color: #555;
+        margin: 15px auto 20px auto;
+        padding: 12px 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 98%;
+    }
+
+        .breadcrumbs ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .breadcrumbs ul li {
+                display: flex;
+                align-items: center;
+            }
+
+
+                .breadcrumbs ul li a {
+                    text-decoration: none;
+                    font-size: 12px;
+                    color: black;
+                }
+
+                .breadcrumbs ul li.active {
+                    color: #004080;
+                    font-weight: 500;
+                    font-size: 12px;
+                }
+
+    .feedback-button {
+        background-color: #444B46;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.2s ease;
+        margin-left: auto;
+        margin-right: 30px;
+    }
+
+        .feedback-button:hover {
+            background-color: #89938D;
+        }
+
+    .print-button {
+        background-color: #444B46;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.2s ease;
+        margin-left: 20px;
+    }
+
+        .print-button:hover {
+            background-color: #89938D;
+        }
+
+
+</style>
+
+<span class="manual-id" id="currentId" hidden>@Model.Parent.Id</span>
+<span class="manual-id" id="manual-title" hidden>@Model.Parent.Value("title")</span>
+<span class="manual-id" id="manual-folder" hidden>@Model.Parent.Value("title")</span>
+
+<div class="breadcrumbs">
+    <ul>
+        <li><a href="/" style="font-size:12px;">Home</a></li>
+        <li class="separator"><i class="fas fa-chevron-right" style="padding-left: 10px; font-size:12px;"></i></li>
+        <li class="active" style=" font-size: 12px;">
+            <button id="showAllBankingOperations" style="background-color:transparent;border:none; cursor:pointer; font-size: 12px; color: #004080;font-weight: 600;">
+                @Model.Value("title")
+            </button>
+        </li>
+
+
+        <button class="print-button" id="sendFeedbackBtn">
+            <i class="fas fa-print"></i> Print Manual
+        </button>
+
+
+        <!-- Send Feedback Button -->
+        <button class="feedback-button" id="sendFeedbackBtn">
+            <i class="fas fa-comment-alt"></i> Send Feedback
+        </button>
+
+    </ul>
+
+
+</div>
+
+
+<div class="bodyContent-area">
+<div class="content-part">@Model.Value("bodyContent")</div>
+
+
+
+</div>
+
+<script>
+
+
+
+</script>

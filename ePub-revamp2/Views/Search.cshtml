@@ -1,0 +1,31 @@
+﻿@*@model ePub.Models.SearchViewModel
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@model ePub.Models.SearchViewModel
+
+@{
+    Layout = "master.cshtml";
+}
+
+<h2>Search Results for "@Model.Query"</h2>
+
+@if (string.IsNullOrWhiteSpace(Model.Query))
+{
+    <p>Please enter a search term.</p>
+}
+else if (!Model.Results.Any())
+{
+    <p>No results found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in Model.Results)
+        {
+            <li>
+                <a href="@item.Url">@item.Name</a> (Score: @item.Score.ToString("0.00"))
+            </li>
+        }
+    </ul>
+}*@

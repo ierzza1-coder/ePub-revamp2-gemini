@@ -1,0 +1,377 @@
+﻿.breadcrumbs {
+    background-color: transparent;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+    color: #555;
+    margin: 15px auto 20px auto;
+    padding: 12px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 97%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: none; /* Optional: Only if the border appears on focus */
+    box-shadow: none; /* For Bootstrap or browser-default styling */
+}
+
+    .breadcrumbs ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .breadcrumbs ul li {
+            display: flex;
+            align-items: center;    
+        }
+
+
+        .breadcrumbs ul li a {
+            text-decoration: none;
+            font-size:12px;
+            color:black;
+        }
+
+            .breadcrumbs ul li.active {
+                color: #004080;
+                font-weight: 500;
+                font-size:12px;
+            }
+
+.feedback-button {
+    background-color: #004080;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.main-content {
+    flex-grow: 1;  
+    padding: 0px 30px 30px 30px;
+    background: #FAFBFC;
+}
+
+.main-category-list {
+    margin-top: 20px;
+}
+
+    .main-category-list h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-top:20px;
+    }
+
+    .main-category-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main-category-list li {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        display: flex;
+        align-items: center;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+        .main-category-list li.has-dropdown {
+            position: relative;
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+            padding: 0;
+            overflow: hidden;
+            display: block;
+        }
+
+        .main-category-list li .main-item-trigger {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-category-list li .text-content {
+            flex-grow: 1;
+            color: #004080;
+        }
+
+        .main-category-list li .text-content {
+            flex-grow: 1;
+            color: #004080;
+        }
+
+        .main-category-list li h4 a {
+            color: #004080;
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        .main-category-list li:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .main-category-list li.has-dropdown:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .main-category-list li .main-item-trigger:hover {
+            background-color: #f0f0f0; /* Slight highlight on trigger hover */
+        }
+
+        .main-category-list li h4 a:hover {
+            color: #007bff; /* Blue on hover */
+        }
+
+        /* Rotate arrow on hover of the parent li */
+        .main-category-list li.has-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+.subcategory-dropdown-content {
+    display: none;
+    padding: 10px 0 10px 20px;
+    background-color: #fdfdfd;
+    border-top: 1px solid #eee;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+    .subcategory-dropdown-content ul li {
+        margin-bottom: 5px;
+        padding: 5px 0;
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        transform: none;
+        padding-left: 10px;
+    }
+
+        .subcategory-dropdown-content ul li a {
+            color: #004080;
+            font-size: 1em;
+            display: block;
+            padding: 3px 0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .subcategory-dropdown-content ul li a:hover {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+        .subcategory-dropdown-content ul li:hover {
+            color: #007bff;
+            text-decoration: none;
+            padding: 15px;
+        }
+
+.breadcrumbs ul li a:hover {
+    color: #007bff; /* Blue on hover */
+    text-decoration: underline; /* Standard underline on hover */
+}
+
+.breadcrumbs ul li .separator {
+    margin: 0 8px; /* Consistent margin */
+    color: #ccc; /* Very light grey for the separator */
+    font-size: 0.9em; /* Consistent size for the chevron */
+}
+
+.breadcrumbs ul li.active {
+    color: #004080; /* Primary blue for the active item */
+    font-weight: 500; /* Medium bold for emphasis */
+}
+
+    /* Style for the separate hyperlink icon */
+    .breadcrumbs ul li.active .publication-details-link {
+        color: #007bff; /* Color for the icon, matching active text */
+        font-size: 0.75em; /* Make it slightly smaller than the text */
+        margin-left: 8px; /* Space between text and icon */
+        text-decoration: none; /* No underline by default */
+        transition: color 0.2s ease;
+        vertical-align: middle; /* Align icon nicely with text */
+        display: inline-flex; /* Use flex to center icon if needed, or just keep inline-block */
+        align-items: center; /* Vertically center the icon within its own space */
+        justify-content: center; /* Horizontally center the icon if it has more padding */
+        width: 1.2em; /* Ensure it takes up a consistent small square of space */
+        height: 1.2em; /* Same as width for square shape */
+        border: 1px solid transparent; /* Subtle border for hover effect */
+        border-radius: 3px; /* Slightly rounded corners for the hover background */
+    }
+
+        .breadcrumbs ul li.active .publication-details-link:hover {
+            color: #0056b3; /* Darker blue on hover */
+            background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+            border-color: rgba(0, 123, 255, 0.3); /* Slightly visible border on hover */
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+    .feedback-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .feedback-button i {
+        font-size: 1em;
+    }
+
+    .flex{
+        display:flex;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    height: 750px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.modal-content h2 {
+    color: #004080;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.modal-content input[type="text"], .modal-content input[type="email"], .modal-content textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-content button {
+    background-color: #004080;
+    color: white;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+    float: right;
+    margin-top: 15px;
+}
+}
+
+.main-category-list li.has-dropdown.active .subcategory-dropdown-content {
+    position: relative;
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+}
+
+.has-dropdown.open .subcategory-dropdown-content {
+    display: block;
+}
+
+.print-button{
+background-color: #004080;
+color: white;
+padding: 8px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 0.9em;
+display: flex
+;
+align-items: center;
+gap: 5px;
+transition: background-color 0.2s ease;
+margin-left: 20px;
+/* margin-right: 30px; */
+    }
+
+    .print-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+

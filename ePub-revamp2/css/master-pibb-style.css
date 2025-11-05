@@ -1,0 +1,868 @@
+﻿* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #FAFBFC;
+    color: #333333;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-w-title {
+    width: 18%;
+    padding-top: 20px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+}
+
+.logo-img {
+    padding-bottom: 8px;
+    width: 13%;
+    padding: 10px;
+}
+
+/* --- Global Container for the entire layout --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff; /* White background for the main content area */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* --- MAIN LAYOUT AREA (Nav and Main Content) --- */
+.main-wrapper {
+    display: flex;
+    flex-grow: 1; /* Allows this area to take remaining vertical space */
+    width: 100%;
+    flex-direction: column;
+    height:100%;
+}
+
+
+/* --- NAV BAR (SIDEBAR) --- */
+.nav-bar {
+    /*background-color: #FAFBFC;
+    width: 250px;*/ /* Slightly wider sidebar */
+    /*min-width: 250px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    padding-top: 40px;*/
+
+    border-right: none;
+    background-color: #FAFBFC;
+    /*    width: 150px;
+    min-width: 0px;*/
+    box-sizing: border-box;
+    /*    display: flex;
+    flex-direction: column;*/
+    /*    padding-top: 0px;
+    width: 120px;*/
+}
+
+
+    .nav-bar .nav-title {
+        color: #003353;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px; /* Added margin below title */
+        /* text-transform: uppercase; */
+        letter-spacing: 0.5px;
+        padding-left: 18px;
+        margin-top: 15px;
+    }
+
+    .nav-bar .nav-title2 {
+        color: black;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0; /* Added margin below title */
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding-left: 18px;
+        line-height: 30px;
+    }
+
+    .nav-bar .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding-left: 20px;
+        margin-bottom: 20px; /* Space between categories */
+    }
+
+        .nav-bar .nav-links a {
+            color: #555555;
+            text-decoration: none;
+            padding: 10px 10px 10px 18px;
+            border-radius: 6px;
+            font-weight: 400;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            line-height: 30px;
+        }
+
+            .nav-bar .nav-links a i {
+                margin-right: 10px;
+                font-size: 12px;
+                color: #777777;
+                font-size: 18px;
+                margin-right: 0;
+                padding-top: 16px;
+                padding-bottom: 4px;
+            }
+
+            .nav-bar .nav-links a:hover,
+            .nav-bar .nav-links a.active {
+                background-color: #e6f0fa; /* Light blue on hover/active */
+                color: #004080;
+                font-weight: 500;
+                border-radius: 0px;
+            }
+
+                .nav-bar .nav-links a.active i {
+                    color: #004080;
+                }
+
+/* Styles for the new hyperlinks at the bottom of the nav bar */
+.nav-footer-links {
+    display: flex;
+    justify-content: space-around; /* Distributes items evenly with space around them */
+    padding: 10px;
+    margin-top: auto; /* Pushes the links to the bottom */
+    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
+    gap: 10px; /* Space between links when wrapped */
+}
+
+    .nav-footer-links a {
+        color: #555555;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .nav-footer-links a:hover {
+            background-color: #e6f0fa;
+            color: #004080;
+        }
+
+/* New CSS for sticky bottom-left links, styled to match nav-footer-links */
+.sticky-links-bottom-left {
+    position: fixed; /* Fixes the position relative to the viewport */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    /* left: 20px; */ /* Distance from the left of the viewport */
+    display: flex; /* Use flexbox to arrange links horizontally */
+    flex-direction: column; /* Stack links vertically */
+    gap: 25px; /* Space between the links */
+    z-index: 1000; /* Ensure they are above other content */
+    flex-direction: row;
+    bottom: 60px;
+}
+
+    .sticky-links-bottom-left a {
+        /* Changed to match nav-footer-links */
+        background-color: transparent; /* No background */
+        color: #555555; /* Match text color */
+        padding: 5px 10px; /* Match padding */
+        border-radius: 5px; /* Match border-radius */
+        text-decoration: none;
+        font-size: 13px; /* Match font size */
+        font-weight: 500;
+        box-shadow: none; /* No box-shadow */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Match transitions */
+        display: flex; /* Keep for icon alignment */
+        align-items: center; /* Keep for icon alignment */
+        gap: 20px; /* Keep for space between icon and text */
+        font-size: 14px;
+    }
+
+        .sticky-links-bottom-left a:hover {
+            /* Changed to match nav-footer-links hover */
+            background-color: #e6f0fa; /* Light blue on hover */
+            color: #004080; /* Primary blue text on hover */
+            transform: none; /* Remove lift effect */
+        }
+
+/* Responsive adjustments for sticky links */
+@media (max-width: 768px) {
+    .sticky-links-bottom-left {
+        bottom: 10px;
+        left: 10px;
+        gap: 8px;
+    }
+
+        .sticky-links-bottom-left a {
+            padding: 5px 10px; /* Adjusted to new default padding */
+            font-size: 13px; /* Adjusted to new default font size */
+        }
+}
+
+.header {
+   /* background: linear-gradient(to left,#C7FDDC -100%, #FAFAFC 100%);*/
+}
+
+.search-section {
+    justify-items: center;
+    /*background: linear-gradient(to left,#C7FDDC -100%, #FAFAFC 100%);*/
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    /*    padding: 80px 0px 80px 0px;*/
+    /*    align-items: center;*/
+}
+
+/* --- MAIN CONTENT AREA --- */
+.main-content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; Reduced gap between main sections */
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: #FAFBFC; /* Light background for content */
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    border: 2px solid #2e3951;
+    border-radius: 8px;
+    padding: 10px 20px;
+    align-items: center;
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    height: 30px;
+}
+
+    .search-bar input {
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        padding: 6px 0;
+        font-size: 15px;
+        background-color: transparent;
+        color: #333333;
+    }
+
+        .search-bar input::placeholder {
+            color: #777777;
+        }
+
+    .search-bar .filter-button {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        cursor: pointer;
+        color: #004080;
+        background-color: #f0f8ff;
+        border: 1px solid #cceeff;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+        .search-bar .filter-button:hover {
+            background-color: #e0f2ff;
+            border-color: #aaddff;
+        }
+
+        .search-bar .filter-button i {
+            margin-right: 8px;
+            font-size: 15px;
+        }
+
+.filter-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    min-width: 280px; /* Increased width */
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+    .filter-dropdown.show {
+        display: flex;
+    }
+
+    .filter-dropdown h5 {
+        margin: 0;
+        color: #004080;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .filter-dropdown label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333333;
+    }
+
+    .filter-dropdown input[type="radio"] {
+        margin-right: 10px;
+        transform: scale(1.1);
+        margin-bottom: 6px;
+    }
+
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+.search-container {
+    position: relative;
+    z-index: 1001; /* Higher than overlay, lower than dropdowns */
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Default background */
+    /*border-radius: 12px;*/
+    padding: 8px 15px;
+    box-shadow: 0 4px 10px #ADADAD;
+    width: 65%;
+    flex-wrap: wrap;
+    /*            gap: 10px;*/
+    border-radius: 24px;
+    height: 75px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background */
+}
+
+    /* Styles for search-container when search is active */
+    .search-container.active {
+        background-color: #ffffff; /* Make it opaque white to stand out */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Stronger shadow for "lift" */
+        border-bottom-left-radius: 0; /* Remove bottom-left radius when active */
+        border-bottom-right-radius: 0; /* Remove bottom-right radius when active */
+    }
+
+
+.search-box {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center;
+    flex-grow: 1;
+    position: relative; /* For absolute positioning of ghost text */
+    min-width: 200px;
+    /* No padding here, let inner elements handle it */
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+    margin-right: 10px; /* Space between icon and input text */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.search-input {
+    border: none;
+    background-color: transparent;
+    padding: 10px 0; /* Vertical padding only, horizontal handled by flex/margin */
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    flex-grow: 1; /* Allow input to take remaining space */
+    position: relative; /* For z-index over ghost text */
+    z-index: 2;
+}
+
+.ghost-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0a0a0; /* Faint color */
+    font-size: 16px;
+    pointer-events: none; /* Allow clicks to pass through */
+    z-index: 1; /* Behind the actual input */
+    opacity: 0.7; /* Make it slightly transparent */
+    white-space: pre; /* Essential to maintain spacing for continuation */
+}
+
+/* Hidden span for measuring text width */
+.text-width-measurer {
+    visibility: hidden;
+    position: absolute; /* Position absolutely within search-box */
+    height: auto;
+    width: auto;
+    white-space: pre; /* Essential for accurate measurement of input text */
+    /* These styles must match search-input for accurate measurement */
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* Default Roboto weight for search input */
+    padding: 10px 0; /* Match search-input vertical padding */
+    left: 30px; /* 20px (icon width) + 10px (icon margin-right) */
+}
+
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Removed absolute positioning here, handled by flexbox in .search-box */
+    transition: color 0.2s ease-in-out;
+    /* No z-index needed here, as it's part of the flex flow */
+}
+
+    .search-button:hover .search-icon {
+        color: #333;
+    }
+
+.search-icon {
+    width: 20px;
+    height: 60px;
+    color: #666;
+}
+
+.filter-dropdown2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    user-select: none;
+}
+
+    .filter-dropdown2:hover .filter-text,
+    .filter-dropdown2:hover .dropdown-icon {
+        color: #333;
+    }
+
+
+.filter-text {
+    font-size: 16px;
+    color: #555;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.dropdown-icon {
+    width: 16px;
+    height: 16px;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.filter-dropdown2.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 280px;
+    z-index: 103; /* Higher than search-container */
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+    .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+        padding: 10px 15px;
+        color: #333;
+        font-size: 15px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 0.15s ease;
+    }
+
+        .dropdown-menu li:hover {
+            background-color: #f0f2f5;
+        }
+
+.search-submit-button {
+    padding: 12px 20px;
+    background-color: #257E39;
+    border: none;
+    border-radius: 8px; /* Changed to 8px for consistency */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    height: 60px;
+    align-self: center;
+    width: 120px;
+    color: #F2F6FF; /* Ensure text/icon is white */
+    z-index: 1001; /* Higher than overlay, same level as search-container */
+    transition: background-color 0.2s ease; /* Added transition for smooth hover */
+    /*margin-left: 20px;*/
+}
+
+    .search-submit-button:hover { /* Added hover effect */
+        background-color: #5BC879; /* Darker blue on hover */
+    }
+
+    .search-submit-button svg {
+        width: 20px;
+        height: 20px;
+        color: white;
+    }
+
+@media (max-width: 768px) {
+    .search-container {
+        padding: 6px 10px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-input {
+        padding: 8px 8px 8px 30px;
+        font-size: 14px;
+    }
+
+    .search-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .filter-dropdown {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        margin-top: 10px;
+        min-width: unset;
+        width: 100%;
+    }
+
+    .filter-text {
+        font-size: 14px;
+    }
+
+    .dropdown-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .dropdown-menu {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .search-submit-button {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #2e3951;
+    color: rgba(255, 255, 255, .6);
+    margin-top: auto;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
+
+
+.page-title {
+    padding-left: 18px;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.logo {
+    padding-left: 10px;
+}
+
+
+.pagination {
+    justify-self: center;
+}
+
+.suggestion-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+    .suggestion-box li {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .suggestion-box li:hover {
+            background-color: #f0f0f0;
+        }
+
+
+
+
+.search-recommendations, .most-searched-dropdown {
+    margin-top: 10px;
+    top: 13%;
+    display: block;
+    z-index: 1000;
+    /*    position: fixed;*/
+    /*    left: 24%;*/
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden !important;
+    padding: 10px 0;
+/*    max-height: 250px;*/
+    overflow-y: auto;
+    display: none;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+    .most-searched-dropdown h5 {
+        margin: 0 0 0px 15px;
+        color: #004080;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-bottom: 6px;
+        padding-left: 0;
+    }
+
+.search-recommendation-item, .most-searched-item {
+    padding: 8px 5px;
+    cursor: pointer;
+    color: #333333;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.search-section:focus {
+    outline: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.autocomplete-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    font-family: inherit;
+}
+
+.ghost-container {
+    margin-left: 3px;
+    position: absolute;
+    top: 5%;
+}
+
+.ghost-suggestion {
+    color: #ccc; /* Faded ghost color */
+}
+
+#searchQuery {
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+    width: 100%;
+    background-color: transparent;
+    font-family: inherit;
+    border: none;
+    outline: none;
+    width: 200%
+}
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* semi-transparent black */
+    z-index: 999; /* should appear above everything */
+    /*backdrop-filter: blur(2px);*/ /* optional blur effect */
+}
+
+.nav-bar .nav-links a:hover,
+.nav-bar .nav-links a.active {
+    background-color: #C7FDDC; /* Light blue on hover/active */
+    color: #004080;
+    font-weight: 600;
+    border-radius: 0px;
+    padding: 10px;
+}
+
+.filter-dropdown2:hover .filter-text,
+.filter-dropdown2:hover .dropdown-icon {
+    color: #333;
+}
+
+.filter-dropdown2.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+
+/*.focus {
+    border-radius: 8px 10px 0px 0px;
+}*/
+
+.open {
+    display: block;
+}
+
+.left-content {
+    max-width: 125px;
+    background-color: #FAFBFC;
+    min-width:121px;
+}
+
+
+@media (min-width: 1430px) and (max-width: 1440px) {
+    #searchQuery {
+        width: 155%;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1429px) {
+    #searchQuery {
+        width: 130%;
+    }
+}
+
+@media (max-width: 1300px) {
+    #searchQuery {
+        width: 100%;
+    }
+}
+
+.most-searched-item:hover {
+    /* Changed to match nav-footer-links hover */
+    background-color: #eaeaea; /* Light blue on hover */
+    transform: none; /* Remove lift effect */
+    font-weight: 600;
+}
+
+.recomend-list {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.sub-text {
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 0;
+}
+
+.container-web {
+    height: 100vh;
+}
+
+.manuals-nav:hover .starred-dropdown {
+    display: block;
+}
+
+.starred-dropdown {
+    display: none;
+}
+
+    .starred-dropdown li {
+        padding: 6px 8px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+    }
+
+        .starred-dropdown li:hover {
+            /*background-color: #f2f2f2;*/
+        }
+
+    /* Arrow pointing left to nav */
+    .starred-dropdown::before {
+        content: "";
+        position: absolute;
+        left: -10px; /* Position on the left edge */
+        top: 20px; /* Vertically centered or adjust */
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent white transparent transparent; /* Right-pointing arrow */
+    }
+
+.nav-bar2 .nav-links2 a.active, .nav-bar2 .nav-links2 a:hover {
+    background-color: #C7FDDC !important;
+    color: #004080;
+    font-weight: 600;
+}
+
+#showAllBankingOperations {
+    color: #257E39 !important;
+}
+
+.contentTitle {
+    color: #257E39 !important;
+}
+
+.contentChild {
+    color: #257E39 !important;
+}

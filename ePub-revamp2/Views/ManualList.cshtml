@@ -1,0 +1,129 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ManualList>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<style>
+
+     .bodyContent-area{
+        margin:40px;
+        background-color: #ffffff;     
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+        border-radius:.25rem;
+    }
+        .content-part{
+        padding:1.25rem;
+    }
+
+    .breadcrumbs {
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        font-size: 0.9em;
+        color: #555;
+        margin: 15px auto 20px auto;
+        padding: 12px 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 97%;
+    }
+
+        .breadcrumbs ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .breadcrumbs ul li {
+                display: flex;
+                align-items: center;
+            }
+
+
+                .breadcrumbs ul li a {
+                    text-decoration: none;
+                    font-size: 12px;
+                    color: black;
+                }
+
+                .breadcrumbs ul li.active {
+                    color: #004080;
+                    font-weight: 500;
+                    font-size: 12px;
+                }
+
+    .feedback-button {
+        background-color: #004080;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.2s ease;
+        margin-left: auto;
+        margin-right: 30px;
+    }
+
+    .print-button {
+        background-color: #004080;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.2s ease;
+        margin-left: 20px;
+        /* margin-right: 30px; */
+    }
+
+        .print-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+
+
+</style>
+
+
+<div class="breadcrumbs">
+    <ul>
+        <li><a href="/" style="font-size:12px;">Home</a></li>
+        <li class="separator"><i class="fas fa-chevron-right" style="padding-left: 10px; font-size:12px;"></i></li>
+        <li class="active" style=" font-size: 12px;">
+            <button id="showAllBankingOperations" style="background-color:transparent;border:none; cursor:pointer; font-size: 12px; color: #004080;font-weight: 600;">
+                @Model.Value("title")
+            </button>
+        </li>
+
+
+        <button class="print-button" id="sendFeedbackBtn">
+            <i class="fas fa-print"></i> Print Manual
+        </button>
+
+
+        <!-- Send Feedback Button -->
+        <button class="feedback-button" id="sendFeedbackBtn">
+            <i class="fas fa-comment-alt"></i> Send Feedback
+        </button>
+
+
+
+    </ul>
+
+</div>
+
+
+<div class="bodyContent-area">
+<div class="content-part">@Model.Value("bodyContent")</div>
+
+</div>

@@ -1,0 +1,504 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Archive>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = null;
+}
+
+<body>
+    
+
+    <div class="main-wrapper" style="display:flex;">
+        <div class="navbar-left">
+            <!-- Left Navigation Bar -->
+            <nav id="left-navbar" class="left-navbar hidden lg:block">
+
+                <div class="img-n-title" style="background: none; padding-top: 20px;">
+                    <a class="logo-link" href="/" style="background:none;">
+
+                        <img class="logo-img" src="/Media/images/public-bank.png" alt="Public Bank Logo" style="background:none;">
+
+                    </a>
+                    <div class="page-title">Electronic Publication Homepage</div>
+                </div>
+
+                <ul class="faq-list" style="padding-left: 6px;">
+                    <li>
+                        <a href="#search" class="has-children">Search and Retrieving</a>
+                        <ul class="nested-nav-link">
+                            <li><a href="#search1" class="nested-point">How to search Manuals</a> </li>
+                            <li><a href="#search2" class="nested-point">How do I filter ny search results?</a> </li>
+                            <li><a href="#search3" class="nested-point">Why can’t I find the document I previously searched?</a> </li>
+                            <li><a href="#search4" class="nested-point">Why arare my search results showing irrelevant documents?</a> </li>
+                            <li><a href="#search5" class="nested-point">Can I save my recent or frequent searches?</a> </li>
+                            <li><a href="#search6" class="nested-point">How do I search by manual's code?</a> </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#manuals" class="has-children">Manuals</a>
+                        <ul class="nested-nav-link">
+                            <li><a href="#manual1" class="nested-point">How do I know if a document is the latest version?</a> </li>
+                            <li><a href="#manual2" class="nested-point">Can I access manuals from other departments?</a> </li>
+                            <li><a href="#manual3" class="nested-point">Can I download and print manuals?</a> </li>
+                            <li><a href="#manual4" class="nested-point">Can I search in Manual?</a> </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#security" class="has-children">Security and Access</a>
+                        <ul class="nested-nav-link">
+                            <li><a href="#security1" class="nested-point">Why can’t I access certain document categories?</a> </li>
+                            <li><a href="#security2" class="nested-point">Can I access the Electronic Publication outside the bank (e.g., from home)?</a> </li>
+                            <li><a href="#security3" class="nested-point">What should I do if I find outdated or incorrect information in a manual?</a> </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="right-content" style="width: 100%; margin-bottom: 75px;">
+            <!--<div id="searchbar" class="hero-section">
+                <div class="illustrations">
+                    <div class="illustration-group-left"></div>
+                    <div class="illustration-group-right"></div>
+                </div>-->
+                
+                
+                
+
+
+
+
+            <!--</div>-->
+
+            <div class="help-content">
+                <div class="search-container" style="margin-top:50px; display:flex;">
+                    <input type="text" id="searchInput" placeholder="Search Question" oninput="showDropdown()" onkeypress="handleSearchEnter(event)">
+                    <ul id="searchDropdown" style="/* padding-top: 100px; */ margin-top: 50px; width: 633px; " class="absolute z-10 w-full bg-white border border-gray-300 rounded shadow max-h-60 overflow-auto hidden">
+                    </ul>
+                    <span class="search-icon-input">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                        </svg>
+                    </span>
+
+                    <button id="searchBtn" class="search-submit-button" style="width: 20%; margin-left: 35px;">Search</button>
+                </div>
+
+
+                <div id="search" class="main-content-area search-section">
+                    <div class="help-topics-section">
+                        <h2>Searching &amp; Retrieving</h2>
+                        <!-- Accordion Items -->
+                        <!--<div class="accordion-item">
+            <div class="accordion-header" id="search1" onclick="toggleAccordion(this)">
+                <span class="question">How to search Manuals</span>-->
+                        
+                        <!--</div>
+                <div class="accordion-content">
+                    <p class="answer">
+                        Use the search bar and filters such as title, category, or tags to narrow down results.
+                    </p>
+                </div>
+            </div>-->
+
+                        <div class="accordion-item" id="search2">
+                            <div class="accordion-header" id="search1" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    How to search Manuals
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    <img style="border-radius: 15px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);" src="/Media/images/search_featured.jpeg">
+                                    Use the search bar and filters such as title, category, or tags to narrow down results.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="accordion-item" id="search2">
+                            <div class="accordion-header" id="search2" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    How do I filter my search results?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    <img style="border-radius: 15px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);" src="/Media/images/search-filters.jpeg">
+                                    You can search using keywords and refine results by:
+                                </p>
+                                <ul>
+                                    <li class="new-li">  •	Macth Type (Any Words, All Words, Exact Phase)</li>
+                                    <li class="new-li"> •	Search In (All Content, Title, Body Content, URL)</li>
+                                </ul>
+                                <p class="answer">
+                                    Using filters improves search accuracy and saves time. Search result can also sort by relevance, title and date
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="search3">
+                            <div class="accordion-header" id="search3" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    Why can’t I find the document I previously searched?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    The document might have been:
+                                </p>
+                                <ul>
+                                    <li class="new-li">•	Renamed or moved to another category (if you are trying to search in respective category)</li>
+                                    <li class="new-li"> •	Archived or deleted </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="search4">
+                            <div class="accordion-header" id="search4" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    Why are my search results showing irrelevant documents?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Check if your filters are too broad or if you entered generic keywords. Be specific (e.g., “account opening form” vs. “form”). Also check spelling and remove outdated filters if needed.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="search5">
+                            <div class="accordion-header" id="search5" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    Can I save my recent or frequent searches?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    <img style="border-radius: 15px; margin-bottom: 24px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);" src="/Media/images/recent-searches.jpeg">
+                                    Recent searches will be in save in cookies. unfortunetly, frequent search function still not available
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="search6">
+                            <div class="accordion-header" id="search6" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    How do I search by manual's code?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    If the document has a unique manual code (e.g., bsf), you can enter it directly in the search bar and select search in URL filter. Use quotation marks for exact matches (e.g., “bsf”).
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="manuals" class="main-content-area manual-section">
+                    <div class="help-topics-section">
+                        <h2> Manuals </h2>
+                        <!-- Accordion Items -->
+                        <div class="accordion-item" id="manual1">
+                            <div class="accordion-header" id="manual1" onclick="toggleAccordion(this)">
+                                <span class="question">How do I know if a document is the latest version?</span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Look for the version number and “Last Updated” date. The system always displays the latest approved version at the top. Older versions may be archived or labeled accordingly.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="manual2">
+                            <div class="accordion-header" id="manual2" onclick="toggleAccordion(this)">
+                                <span class="question">Can I access manuals from other departments?</span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Access is based on your user role. If you don’t have permission, the category or document may be hidden. You can request access through your supervisor or DMS admin.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="manual3">
+                            <div class="accordion-header" id="manual3" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    Can I download and print manuals?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Yes, print buttonm are there for most manuals and can prompt to download as PDF
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="manual4">
+                            <div class="accordion-header" id="manual4" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    Can I search in Manual?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Yes, the search bar is only search within the manuals. For example, if you're in bsf manual, hence it will only search within the bsf folder.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="security" class="main-content-area security-section">
+                    <div class="help-topics-section">
+                        <h2> Security and Access</h2>
+                        <!-- Accordion Items -->
+                        <div class="accordion-item" id="security1">
+                            <div class="accordion-header" id="security1" onclick="toggleAccordion(this)">
+                                <span class="question">Why can’t I access certain document categories?</span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Categories may be restricted based on:
+                                </p>
+                                <ul>
+                                    <li class="new-li">• Role (e.g., only branch managers can access “Management Memos”)</li>
+                                    <li class="new-li">• Department (e.g., Legal documents only for legal team)</li>
+                                    <li class="new-li">• Confidentiality level (e.g., internal audit reports)</li>
+                                </ul>
+                                <p class="answer">
+                                    Request access through IUIA if needed.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="security2">
+                            <div class="accordion-header" id="security2" onclick="toggleAccordion(this)">
+                                <span class="question"> Can I access the Electronic Publication outside the bank (e.g., from home)?</span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Electronic Publication access is usually restricted to the bank’s internal network for data security. Remote access may require VPN connection.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item" id="security3">
+                            <div class="accordion-header" id="security3" onclick="toggleAccordion(this)">
+                                <span class="question">
+                                    What should I do if I find outdated or incorrect information in a manual?
+                                </span>
+                                
+                            </div>
+                            <div class="accordion-content open">
+                                <p class="answer">
+                                    Report the issue using the Send Feedback button located in the manual.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="topFunction()" id="myBtn" title="Go to top"> <i class="fa-solid fa-arrow-up"></i> Go To Top</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        Copyright © 2025 Public Bank Berhad
+    </footer>
+
+    <script>
+        function toggleAccordion(element) {
+            //const header = element;
+            //const content = header.nextElementSibling;
+
+            //header.classList.toggle('expanded');
+            //if (content.classList.contains('open')) {
+            //    content.classList.remove('open');
+            //    content.style.maxHeight = null;
+            //} else {
+            //    content.classList.add('open');
+            //    content.style.maxHeight = content.scrollHeight + 'px';
+            //}
+        }
+
+        // Auto-expand the first accordion item on page load as per the image
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstAccordionHeader = document.querySelector('.accordion-item .accordion-header');
+            if (firstAccordionHeader) {
+                toggleAccordion(firstAccordionHeader);
+            }
+        });
+
+
+        //back to top button
+        let mybutton = document.getElementById("myBtn");
+
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggles = document.querySelectorAll('.has-children');
+
+            toggles.forEach(function (toggle) {
+                toggle.addEventListener('click', function () {
+                    const nestedList = this.nextElementSibling;
+                    if (nestedList && nestedList.classList.contains('nested-nav-link')) {
+                        nestedList.style.display = nestedList.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            });
+        });
+
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById("searchInput").value.toLowerCase().trim();
+                if (!input) return;
+
+                const paragraphs = document.querySelectorAll("p");
+                let foundSection = null;
+
+                paragraphs.forEach(p => {
+                    if (p.textContent.toLowerCase().includes(input) && !foundSection) {
+                        // Find the closest section with an ID (e.g., #search2, #manual1, etc.)
+                        let section = p.closest(".accordion-item, .main-content-area");
+                        while (section && !section.id) {
+                            section = section.previousElementSibling || section.parentElement;
+                        }
+
+                        if (section && section.id) {
+                            foundSection = section;
+                        }
+                    }
+                });
+                console.log(foundSection)
+                if (foundSection) {
+                    document.getElementById(foundSection.id).scrollIntoView({ behavior: 'smooth' });
+
+                    // Optional highlight
+                    foundSection.classList.add("ring", "ring-blue-300");
+                    setTimeout(() => {
+                        foundSection.classList.remove("ring", "ring-blue-300");
+                    }, 2000);
+
+                } else {
+                    alert("No matching paragraph found.");
+                }
+            }
+        }
+
+        function handleSearchEnter(event) {
+            if (event.key === 'Enter') {
+                const dropdown = document.getElementById("searchDropdown");
+                if (dropdown.firstChild) {
+                    dropdown.firstChild.click(); // Simulate click on first result
+                }
+            }
+        }
+
+        function showDropdown() {
+            const input = document.getElementById("searchInput").value.toLowerCase().trim();
+            const dropdown = document.getElementById("searchDropdown");
+            dropdown.innerHTML = "";
+
+            if (!input) {
+                dropdown.classList.add("hidden");
+                return;
+            }
+
+            const paragraphs = document.querySelectorAll("p");
+            let results = [];
+
+            paragraphs.forEach(p => {
+                const text = p.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    const section = p.closest(".accordion-item, .main-content-area");
+
+                    console.log(section);
+                    const sectionId = section?.id || "";
+                    const heading = section?.querySelector("span")?.textContent || "Untitled Section";
+
+                    const previewStart = text.indexOf(input);
+                    const preview = p.textContent.substring(
+                        Math.max(previewStart - 20, 0),
+                        previewStart + input.length + 20
+                    );
+
+                    results.push({ sectionId, heading, preview });
+                }
+            });
+
+            if (results.length === 0) {
+                dropdown.classList.add("hidden");
+                return;
+            }
+
+            
+
+            results.forEach(res => {
+
+                console.log(res);
+
+                const li = document.createElement("li");
+                li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-left";
+                li.innerHTML = `
+                <strong class="block text-gray-800">${res.heading}</strong>
+                <span class="text-gray-600">${res.preview.replace(new RegExp(input, 'gi'), match => `<mark>${match}</mark>`)}</span>
+            `;
+                li.onclick = () => {
+                    document.getElementById(res.sectionId)?.scrollIntoView({ behavior: 'smooth' });
+
+                    // Optional: highlight the section briefly
+                    const el = document.getElementById(res.sectionId);
+                    el?.classList.add("ring", "ring-blue-300");
+                    setTimeout(() => el?.classList.remove("ring", "ring-blue-300"), 2000);
+
+                    dropdown.classList.add("hidden");
+                };
+                dropdown.appendChild(li);
+            });
+
+            dropdown.classList.remove("hidden");
+        }
+
+
+
+    </script>
+
+
+</body>

@@ -1,0 +1,936 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Manuals>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/css/category-style.css")">
+
+<style>
+
+    .main-category-list {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        display: flex;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        flex-direction: column;
+        border-radius: 24px;
+    }
+
+
+    .manuals-wrapper {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        display: flex;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        flex-direction: column;
+        border-radius: 16px;
+        margin-right: 60px;
+    }
+
+    .manuals-wrapper2 {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        display: flex;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        flex-direction: column;
+        border-radius: 16px;
+    }
+
+    .manual-item {
+        background-color: #FAFBFC;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+        display: flex;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        flex-direction: column;
+        border-radius: 24px;
+        /*        width: 350px;*/
+    }
+
+    .starred-documents {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .recent-manual {
+        display: flex;
+        gap: 30px;
+    }
+
+    .ghost-container {
+        margin-left: 2px;
+        position: absolute;
+        top: 23%;
+    }
+
+    .allManuals {
+        padding: 12px 20px;
+        background-color: #004080;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        height: 60px;
+        align-self: center;
+        width: 140px;
+        color: #F2F6FF;
+        z-index: 1001;
+        transition: background-color 0.2s ease;
+        margin-left: 20px;
+    }
+
+        .allManuals:hover {
+            background-color: #0056b3;
+        }
+
+    .lessManuals {
+        padding: 12px 20px;
+        /* background-color: #004080; */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        height: 60px;
+        align-self: center;
+        width: 140px;
+        color: #F2F6FF;
+        z-index: 1001;
+        transition: background-color 0.2s ease;
+        margin-left: 20px;
+    }
+
+    .alphabet-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .alphabet-btn {
+        padding: 8px 12px;
+        min-width: 36px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #004080;
+        background-color: #f2f6ff;
+        border: 1px solid #cce0ff;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+        .alphabet-btn:hover {
+            background-color: #d6eaff;
+            transform: translateY(-1px);
+        }
+
+        .alphabet-btn.active {
+            background-color: #004080;
+            color: black;
+            border-color: #004080;
+        }
+
+
+
+    .doc-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .doc-header, .doc-item {
+        display: flex;
+        align-items: center;
+        padding: 22px 26px;
+    }
+
+    .doc-header {
+        background-color: transparent;
+        font-weight: bold;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .doc-item {
+        border-bottom: 1px solid #eee;
+        transition: background 0.2s;
+    }
+
+        .doc-item:hover {
+            background-color: #f0f4f8;
+        }
+
+    .doc-title {
+        flex: 2;
+        font-weight: 500;
+    }
+
+    .doc-url {
+        flex: 2;
+        font-size: 0.9em;
+        color: #0073e6;
+        word-break: break-word;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .doc-url a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+            .doc-url a:hover {
+                text-decoration: underline;
+            }
+
+    .doc-date {
+        flex: 1;
+        text-align: right;
+        font-size: 0.9em;
+        color: #555;
+    }
+
+    /* Left Navigation Bar */
+    .nav-bar2 {
+        /* Existing styles */
+        background-color: #ffffff;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #e0e0e0;
+        padding-top: 20px;
+        overflow-y: auto;
+        margin-right: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin: 30px;
+        height: 250px;
+        border-radius: 8px;
+        padding-bottom: 30px;
+        margin-top: 0;
+        /* New sticky properties */
+        position: sticky;
+        top: 20px; /* Adjust this value to control the distance from the top of the viewport */
+        align-self: flex-start; /* Corrects alignment within the flex parent */
+    }
+
+        .nav-bar2 .nav-header2 {
+            padding: 0px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #004080;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .nav-bar2 .nav-links2 {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+            .nav-bar2 .nav-links2 a {
+                color: #555555;
+                text-decoration: none;
+                padding: 10px 15px;
+                border-radius: 6px;
+                font-weight: 400;
+                transition: background-color 0.3s ease, color 0.3s ease;
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+            }
+
+                .nav-bar2 .nav-links2 a.active,
+                .nav-bar2 .nav-links2 a:hover {
+                    background-color: #e6f0fa;
+                    color: #004080;
+                    font-weight: 600;
+                }
+
+    .count-sort {
+        width: 100%;
+        display:flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        /* align-items: center; */
+        justify-content: space-between;
+    }
+
+    .page-content {
+        margin-bottom: 100px;
+    }
+
+</style>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"> <i class="fa-solid fa-arrow-up"></i> Go To Top</button>
+
+<div class="page-content col-xl-12 row gap-2" style="padding-top:30px;">
+
+
+    <nav class="nav-bar2 col-xl-1" style="width:14%;">
+
+        <div class="nav-links2">
+            <a href="#" class="active nav-text2 all" style=" margin:5px;">All Manuals</a>
+            @*<a href="#" class="nav-text2 starred" style=" margin:5px;">Starred</a>
+            <a href="#" class="nav-text2 recent" style=" margin:5px;">History</a>*@
+
+
+        </div>
+    </nav>
+
+
+
+    <div class="manuals-wrapper p-4 col-xl-7 allDoc show" style="margin-bottom: 50px; width: 63.5%;">
+        <div class="con-head" style="display: flex; flex-direction: row; padding: 0px 10px;">
+
+
+            <h2 style="padding-left:5px;"> All Manuals</h2>
+
+        </div>
+
+        <div class="count-sort">
+            <div class="doc-count" style="margin-bottom: 10px; padding-left: 18px; font-weight: bold;"></div>
+
+        </div>
+
+        <div id="alphabetNav" class="alphabet-filter" style="margin-top: 18px; margin-bottom: 18px; gap:15px;">
+            <span class="letter" data-letter="all">All</span>
+            <span class="letter" data-letter="A">A</span>
+            <span class="letter" data-letter="B">B</span>
+            <span class="letter" data-letter="C">C</span>
+            <!-- Add up to Z -->
+        </div>
+
+        <div class="doc-header" style="display: flex; justify-content: space-between; align-items: center; padding: 22px 26px; font-weight: 500; ">
+            <!-- Left column: Title -->
+            <div style="flex: 1;" data-sort-key="title" data-sort-order="asc">Document Name <i class="fas fa-sort sort-arrow"  style="padding-left:4px; cursor:pointer"></i></div>
+
+            <div style="width: 150px; text-align: center;" data-sort-key="urlName"data-sort-order="asc">Url Name</div>
+
+            <!-- Middle column: Date -->
+            <div style="width: 150px; text-align: right;" data-sort-key="date" data-sort-order="asc">Published Date <i class="fas fa-sort sort-arrow" style="padding-left: 4px; cursor: pointer"></i></div>
+
+            <!-- Right column: Expand -->
+            <div style="width: 150px; text-align: center;">Action</div>
+        </div>
+
+
+        <div class="doc-list-all">
+            <!-- Column Headers -->
+            <!-- Document Rows -->
+        </div>
+
+
+    </div>
+
+    <div class="manuals-wrapper p-4 col-xl-8 starredDoc" style="margin-bottom:50px; display:none;">
+        @*<div class="con-head" style="display: flex; flex-direction: row; padding: 0px 10px;">
+
+
+            <h2 style="padding-left:10px;"> Starred Manuals</h2>
+
+        </div>*@
+
+
+        <div class="doc-list-star">
+            <!-- Column Headers -->
+            <div class="doc-header">
+                <div class="doc-title">Document Name</div>
+                @* <div class="doc-url">URL</div>*@
+                <div class="doc-date">Published Date</div>
+            </div>
+
+            <!-- Document Rows -->
+        </div>
+
+
+    </div>
+
+
+
+    <div class="manuals-wrapper p-4 col-xl-8 recentDoc" style="margin-bottom:50px; display:none;">
+        @*<div class="con-head" style="display: flex; flex-direction: row; padding: 0px 10px;">
+
+
+            <h2 style="padding-left:10px;">History</h2>
+
+        </div>*@
+
+
+        <div class="doc-list-recent">
+            <!-- Column Headers -->
+            <div class="doc-header">
+                <div class="doc-title">Document Name</div>
+                @* <div class="doc-url">URL</div>*@
+                <div class="doc-date">Opened Date</div>
+            </div>
+
+            <!-- Document Rows -->
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!--<div class="manuals-wrapper starred p-4 col-xl-12" style="width:45%; height:32em;">
+
+        <div class="header" style="padding-left: 32px; padding-bottom: 18px;">
+            <h2 class="col-xl-8">Starred Manuals</h2>-->
+    @*<button class="show-more-btn btn btn-primary col-xl-4" style="width:120px; height:40px;">Show More</button>*@
+    <!--</div>
+    <div class="starred-documents row" style="justify-content: center;">
+
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/foreign-exchange-notices/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Foreign Exchange Notices</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/foreign-exchange-notices/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>1 August 2025</b></p>
+            </a>
+        </div>
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/product-sisclosure-sheet/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Product Disclosure Sheet</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/product-sisclosure-sheet/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>12 July 2025</b></p>
+            </a>
+        </div>
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/customer-care-campaign/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Customer Care Campaign</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/customer-care-campaign/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>15 December 2024</b></p>
+            </a>
+        </div>
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/terms-&-condition/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Terms & Condition</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/terms-&-condition/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>1 February 2025</b></p>
+            </a>
+        </div>
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/standard-rpicing-list/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Standard Pricing List</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/standard-rpicing-list/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>22 March 2025</b></p>
+            </a>
+        </div>
+
+        <div class="manual-item col-xl-5">
+            <a href="/manual/update-section/" style="text-decoration:none; text-decoration: none;color: #004080;" class="starred-item">
+                <div class="title-text" style="font-size:16px;">Update Section</div>
+                <div class="item-link" style="margin:5px 0 10px 0; color:grey;">
+                    <p style="margin:0; font-size:0.9em;">
+                        <b>/manual/update-section/</b>
+                    </p>
+                </div>
+                <p class="meta-info" style="font-size:14px;"><b>16 June 2025</b></p>
+            </a>
+        </div>
+
+    </div>-->
+    @*<div class="text-center mt-3">
+            <button class="show-less-btn btn btn-secondary" style="display:none;">Show Less</button>
+        </div>*@
+    <!--</div>-->
+
+
+    <div class="manuals-wrapper p-4 col-xl-8 searchDoc" style="margin-bottom:50px; display:none;">
+        <div class="con-head" style="display: flex; flex-direction: row; padding: 0px 10px;">
+
+
+            <h2 style="padding-left:10px;">Serch Result</h2>
+
+        </div>
+
+
+        <div class="doc-list-search">
+            <!-- Column Headers -->
+            <div class="doc-header">
+                <div class="doc-title">Document Name</div>
+                @* <div class="doc-url">URL</div>*@
+                <div class="doc-date">Published Date</div>
+            </div>
+
+            <!-- Document Rows -->
+        </div>
+
+
+
+
+        <div class="search-result" id="searchResults"></div>
+        <div class="pagination" id="pagination"></div>
+
+
+
+
+    </div>
+
+
+    <div class="search-result-area col-xl-8 hide">
+        <div class="filter-sort-options hide">
+            <label for="sortBySelect"><strong>Sort By:</strong></label>
+            <select class="results-count" id="sortBySelect">
+                <option value="score">Relevance</option>
+                <option value="title">Title (A–Z)</option>
+                <option value="date-asc">Updated Date (Asc)</option>
+                <option value="date-desc">Updated Date (Desc)</option>
+            </select>
+        </div>
+
+        @*<div class="filter-sort-options">
+                <div class="results-count" id="resultsCount"></div>
+                <div class="sort-by">
+                    <label for="sortBySelect">Sort by:</label>
+                    <select id="sortBySelect">
+                        <option value="score">Relevance</option>
+                        <option value="updatedate">Updated Date</option>
+                        <option value="date-desc">Date (Newest First)</option>
+                        <option value="date-asc">Date (Oldest First)</option>
+                        <option value="title">Title (A-Z)</option>
+                    </select>
+                </div>
+            </div>*@
+
+
+        <div class="search-result" id="searchResults"></div>
+        <div class="pagination" id="pagination"></div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+<script>
+    //const starred = JSON.parse(localStorage.getItem('starredDocs') || '[]');
+
+    //const container = document.getElementById('favorites-container');
+
+    //if (starred.length === 0) {
+    //  container.innerHTML = "<p>No starred documents.</p>";
+    //} else {
+    //  starred.forEach(docId => {
+    //    const link = document.createElement('a');
+    //    link.href = docId;
+    //    link.textContent = docId; // You can improve this with metadata or title fetch
+    //    link.style.display = "block";
+    //    container.appendChild(link);
+    //  });
+    //}
+
+
+    (function () {
+        // Only run on manual pages
+        if (window.location.pathname.startsWith('/manual')) {
+            const currentManual = {
+                url: window.location.pathname,
+                title: document.title,
+                time: new Date().toISOString()
+            };
+
+            // Get existing recent manuals
+            let recent = JSON.parse(localStorage.getItem('recentManuals') || '[]');
+
+            // Remove duplicates by URL
+            recent = recent.filter(m => m.url !== currentManual.url);
+
+            // Add to beginning
+            recent.unshift(currentManual);
+
+            // Limit to 5 recent items
+            if (recent.length > 5) {
+                recent = recent.slice(0, 5);
+            }
+
+            // Save back to localStorage
+            localStorage.setItem('recentManuals', JSON.stringify(recent));
+        }
+    })();
+
+    //display all docuemnt
+    loadManualsUnder1207()
+
+
+    ////display star document
+    $(document).ready(function () {
+        const container = $('.doc-list-star');
+        container.html('<div class="doc-list-star"><div class="doc-header"><div class="doc-title">Document Name</div><div class="doc-date">Published Date</div></div> </div > ');
+
+        currentCulture = document.getElementById("currentCultureSpan").textContent;
+
+
+
+
+        if (currentCulture == "pbb") {
+
+            // Get list of starred IDs
+            const starred = JSON.parse(localStorage.getItem('starredManuals') || '[]');
+
+            if (starred.length === 0) {
+                container.html('<p>No starred documents.</p>');
+                return;
+            }
+
+            // Clear container for results
+            /*container.empty();*/
+
+
+            // Loop through each ID and call the API
+            starred.forEach(id => {
+                $.get(`/umbraco/api/starred/getmanualcontentbyid?id=${id}`, function (res) {
+                    // Append result to container
+                    container.append(`<a href="${res.url}" class="doc-item" style="text-decoration:none; cursor:pointer;" data-title="${res.name}">
+                 <div class="doc-title" style="text-decoration:none; color:rgb(51, 51, 51);">${res.name}</div>
+                    <div class="doc-date">${res.updateDate}</div>
+                 </a>
+            `);
+                }).fail(() => {
+                    container.append(`<p style="color:red;">Failed to load document with ID ${id}</p>`);
+                });
+            });
+
+        }
+
+
+
+
+        else if (currentCulture == "pibb") {
+
+            // Get list of starred IDs
+            const starred = JSON.parse(localStorage.getItem('starredManualsPibb') || '[]');
+
+            if (starred.length === 0) {
+                container.html('<p>No starred documents.</p>');
+                return;
+            }
+
+            // Clear container for results
+            /*container.empty();*/
+
+
+            // Loop through each ID and call the API
+            starred.forEach(id => {
+                $.get(`/umbraco/api/starred/getmanualcontentbyid?id=${id}`, function (res) {
+                    // Append result to container
+                    container.append(`<a href="${res.url}" class="doc-item" style="text-decoration:none; cursor:pointer;" data-title="${res.name}">
+         <div class="doc-title" style="text-decoration:none; color:rgb(51, 51, 51);">${res.name}</div>
+            <div class="doc-date">${res.updateDate}</div>
+         </a>
+    `);
+                }).fail(() => {
+                    container.append(`<p style="color:red;">Failed to load document with ID ${id}</p>`);
+                });
+            });
+
+        }
+
+
+
+
+
+
+
+
+        //click nav
+
+        $('.starred').on('click', function (e) {
+
+            if ($(this).hasClass('active')) {
+                e.preventDefault(); // stops link behavior
+                return; // stops further actions
+            }
+
+            $('.starredDoc').show()
+            $('.show').hide()
+
+            $('.show').addClass('hide');
+            $('.show').removeClass('show');
+            $('.starredDoc').removeClass('hide');
+            $('.starredDoc').addClass('show');
+
+            $('.active').removeClass('active');
+            $('.starred').addClass('active');
+
+
+        })
+
+        $('.all').on('click', function (e) {
+
+            if ($(this).hasClass('active')) {
+                e.preventDefault(); // stops link behavior
+                return; // stops further actions
+            }
+
+            $('.allDoc').show()
+            $('.show').hide()
+
+            $('.show').addClass('hide');
+            $('.show').removeClass('show');
+            $('.allDoc').removeClass('hide');
+            $('.allDoc').addClass('show');
+
+            $('.active').removeClass('active');
+            $('.all').addClass('active');
+
+            $('.doc-item-wrapper').show()
+        })
+
+
+        $('.recent').on('click', function (e) {
+
+            if ($(this).hasClass('active')) {
+                e.preventDefault(); // stops link behavior
+                return; // stops further actions
+            }
+
+            $('.recentDoc').show()
+            $('.show').hide()
+
+            $('.show').addClass('hide');
+            $('.show').removeClass('show');
+            $('.recentDoc').removeClass('hide');
+            $('.recentDoc').addClass('show');
+
+            $('.active').removeClass('active');
+            $('.recent').addClass('active');
+        })
+
+
+    });
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        $(".allManuals").on('click', function () {
+            $(".recented").hide();
+            $(".starred").hide();
+
+        });
+
+        $(".lessManuals").on('click', function () {
+            $(".recented").show();
+            $(".starred").show();
+
+        });
+
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initially hide all except first 2 manual-item
+        const $manualsContainer = $('.manuals-container');
+        const $items = $manualsContainer.find('.manual-item');
+
+        if ($items.length > 2) {
+            $items.slice(2).hide();
+            $('.show-more-btn').show(); // Show the Show More button
+        }
+
+        $('.show-more-btn').on('click', function () {
+            $items.slideDown();
+            $(this).hide();
+            $('.show-less-btn').show();
+        });
+
+        $('.show-less-btn').on('click', function () {
+            $items.slice(2).slideUp();
+            $(this).hide();
+            $('.show-more-btn').show();
+        });
+    });
+
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const $manualsContainer = $('.manuals-container');
+        const $items = $manualsContainer.find('.manual-item');
+
+        // Initially show only 2
+        if ($items.length > 2) {
+            $items.slice(2).hide();
+            $('.show-more-btn').show();
+        }
+
+        // Show More
+        $('.show-more-btn').on('click', function () {
+            $items.slideDown();
+            $('.sort-container').fadeIn(); // Show sort dropdown
+            $(this).hide();
+            $('.show-less-btn').show();
+        });
+
+        // Show Less
+        $('.show-less-btn').on('click', function () {
+            $items.slice(2).slideUp();
+            $('.sort-container').fadeOut(); // Hide sort dropdown
+            $(this).hide();
+            $('.show-more-btn').show();
+        });
+
+        // Sorting
+        $('#sortManuals').on('change', function () {
+            const sortOrder = $(this).val(); // asc or desc
+            const sortedItems = $items.sort(function (a, b) {
+                const titleA = $(a).find('.title-text').text().toLowerCase();
+                const titleB = $(b).find('.title-text').text().toLowerCase();
+                return sortOrder === 'asc' ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+            });
+
+            // Append sorted items
+            $manualsContainer.html(sortedItems);
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const $manualsContainer = $('.manuals-container');
+
+        $(document).on('click', '.alphabet-btn', function () {
+            const letter = $(this).data('letter');
+            const $manuals = $manualsContainer.find('.manual-item');
+
+            if (letter === 'all') {
+                $manuals.show();
+            } else {
+                $manuals.each(function () {
+                    const title = $(this).data('title')?.toLowerCase();
+                    if (title && title.startsWith(letter.toLowerCase())) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            // Reset pagination buttons
+            $('.show-less-btn').hide();
+            $('.show-more-btn').show();
+        });
+    });
+
+
+    let mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+
+
+    //search filter
+    document.getElementById("searchQuery").addEventListener("input", function () {
+    const searchText = this.value.toLowerCase();
+    const manuals = document.querySelectorAll(".doc-item-wrapper");
+
+    manuals.forEach(wrapper => {
+        const mainTitle = wrapper.querySelector("a").textContent.toLowerCase();
+        const children = wrapper.querySelectorAll(".doc-children .doc-item div:first-child");
+        let matchFound = mainTitle.includes(searchText);
+
+        // If not found in parent, check in children
+        if (!matchFound) {
+            children.forEach(child => {
+                if (child.textContent.toLowerCase().includes(searchText)) {
+                    matchFound = true;
+                }
+            });
+        }
+
+        // Show or hide wrapper
+        wrapper.style.display = matchFound ? "" : "none";
+    });
+    });
+
+
+    //document.querySelectorAll('.doc-header [data-sort-key]').forEach(header => {
+    //    header.addEventListener('click', () => {
+    //        const sortKey = header.getAttribute('data-sort-key');
+    //        let sortOrder = header.getAttribute('data-sort-order');
+
+    //        // Toggle sort order
+    //        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    //        header.setAttribute('data-sort-order', sortOrder);
+
+    //        // Sort the docs
+    //        sortDocuments(sortKey, sortOrder);
+
+    //        // Update arrows UI
+    //        updateSortArrows(sortKey, sortOrder);
+    //    });
+    //});
+
+
+
+</script>

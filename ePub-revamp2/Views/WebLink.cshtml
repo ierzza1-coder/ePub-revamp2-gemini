@@ -1,0 +1,453 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WebLink>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+	
+	 var firstChild = Model.Children.FirstOrDefault();
+	 
+}
+
+
+<style>
+
+                width: 100%;
+                margin-bottom: 0px;
+            }
+
+                .nav-bar .nav-links a {
+                    margin-top: 0px;
+                    margin-bottom: 5px;
+                }*/
+        .bodyContent-area {
+            /*        margin: 30px 40px 30px 40px;
+            background: white;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            border-radius: .25rem;*/
+        }
+
+        .content-part {
+            padding: 1.25rem;
+        }
+
+        .manual-button {
+            display: flex;
+            gap: 20px;
+        }
+
+
+        .breadcrumbs {
+            background-color: transparent;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+            color: #555;
+            margin: 15px auto 20px auto;
+            padding: 12px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            width: 97%;
+            padding-right: 0;
+        }
+
+            .breadcrumbs ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+            }
+
+                .breadcrumbs ul li {
+                    display: flex;
+                    align-items: center;
+                }
+
+
+                    .breadcrumbs ul li a {
+                        text-decoration: none;
+                        font-size: 12px;
+                        color: black;
+                    }
+
+                    .breadcrumbs ul li.active {
+                        color: #004080;
+                        font-weight: 500;
+                        font-size: 12px;
+                    }
+
+        .feedback-button {
+            background-color: #004080;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s ease;
+            margin-left: auto;
+            margin-right: 30px;
+        }
+
+        .print-button {
+            background-color: #004080;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s ease;
+            margin-left: 20px;
+            /* margin-right: 30px; */
+        }
+
+
+
+
+
+
+        .container {
+            display: flex;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Left Navigation Bar */
+        .nav-bar2 {
+background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex
+;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    padding-top: 20px;
+    overflow-y: auto;
+    margin-right: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin: 30px 22px;
+    /* height: 250px; */
+    border-radius: 8px;
+    padding-bottom: 30px ;
+    margin-top: 0;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    width: 14%;
+        }
+
+            .nav-bar2 .nav-header2 {
+                padding: 0px 20px;
+                font-size: 16px;
+                font-weight: 500;
+                color: #004080;
+                border-bottom: 1px solid #e0e0e0;
+                margin-bottom: 10px;
+            }
+
+            .nav-bar2 .nav-links2 {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+                .nav-bar2 .nav-links2 a {
+                    color: #555555;
+                    text-decoration: none;
+                    padding: 10px 15px;
+                    border-radius: 6px;
+                    font-weight: 400;
+                    transition: background-color 0.3s ease, color 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                }
+
+                    .nav-bar2 .nav-links2 a.active,
+                    .nav-bar2 .nav-links2 a:hover {
+                        background-color: #e6f0fa;
+                        color: #004080;
+                        font-weight: 600;
+                    }
+
+        /* Main Content Area */
+        .main-content-area2 {
+            flex-grow: 1;
+            /*padding: 30px;*/
+            box-sizing: border-box;
+            background-color: #FAFBFC;
+            overflow-y: auto;
+            padding-left: 10px;
+            padding-right: 20px;
+        }
+
+        .content-section2 {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+
+            .content-section2 h2 {
+                margin-top: 0;
+                color: #003353;
+                font-size: 20px;
+                font-weight: 700;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e0e0e0;
+                margin-bottom: 20px;
+            }
+
+            .content-section2 ul {
+                list-style: disc;
+                padding-left: 20px;
+                margin: 0;
+            }
+
+                .content-section2 ul li {
+                    margin-bottom: 10px;
+                    color: #333333;
+                    font-size: 15px;
+                }
+
+            .content-section2 p {
+                font-size: 15px;
+                color: #333333;
+                margin-bottom: 10px;
+            }
+
+            .content-section2 strong {
+                color: #004080;
+            }
+
+        /* Specific styles for "Product Features" section */
+        .product-features-list {
+            list-style: none; /* Remove default bullets */
+            padding: 0;
+        }
+
+            .product-features-list li {
+                margin-bottom: 15px;
+            }
+
+                .product-features-list li strong {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-size: 15px;
+                    color: #003353;
+                }
+
+                .product-features-list li span {
+                    font-size: 14px;
+                    color: #555555;
+                }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #11111100;
+            color: #141414;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ADADAD;
+        }
+
+            #myBtn:hover {
+                background-color: #ADADAD;
+            }
+
+        /*.recomend-list {*/
+        /*display: flex !important;*/
+        /*flex-direction: column !important;
+        }*/
+
+        .filter-dropdown2 {
+            display: none;
+        }
+
+
+        .ghost-container {
+            margin-left: 1px;
+            top: 17%;
+        }
+    </style>
+</head>
+<body>
+    
+    <button onclick="topFunction()" id="myBtn" title="Go to top"> <i class="fa-solid fa-arrow-up"></i> Go To Top</button>
+
+
+    <div class="bodyContent-area col-xl-12 row gap-2" style="display:flex; width: 100%; padding-top: 30px;">
+
+        <span class="manual-id" id="currentId" hidden="">1358</span>
+
+
+        <nav class="nav-bar2 col-xl-2">
+
+            <div class="nav-links2">
+                <ul>
+                    @{
+
+                        foreach (var children in Model.Children())
+                        {
+                            <li onclick="getManual(this)" style="cursor:pointer; margin:20px;">
+                                <div class="manual-direct" id="manual-direct" style=" margin:5px;">@children.Value("title")</div>
+
+
+                            </li>
+                        }
+
+                    }
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content-area2 col-xl-7" style="margin-right: 17%;">
+
+            <div class="content-section2 @firstChild.Value("title") show" id="@firstChild.Value("title")">
+                <h2>@firstChild.Value("title")</h2>
+
+                @foreach (var childrenUnderFirstChild in firstChild.Children())
+                {
+                    <div class="content-section2-inner " id="@childrenUnderFirstChild.Value("title")">
+
+                        <div>
+                            @childrenUnderFirstChild.Value("bodyContent")
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            @foreach (var childstart2 in Model.Children.Skip(1))
+            {
+
+                <div class="content-section2 @childstart2.Value("title") hide" id="@childstart2.Value("title")">
+                    <h2>@childstart2.Value("title")</h2>
+
+                    @foreach (var childrenUnderChild in childstart2.Children())
+                    {
+                        <div class="content-section2-inner" id="@childrenUnderChild.Value("title")">
+
+
+                            <div>
+                                @childrenUnderChild.Value("bodyContent")
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+
+
+
+
+
+
+
+        </main>
+
+
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    function getManual(element) {
+        // Get the clicked title text (trim to avoid whitespace issues)
+        const clickedTitle = element.querySelector('.manual-direct').textContent.trim();
+
+        // Hide all content-section2 blocks
+        document.querySelectorAll('.main-content-area2 .content-section2').forEach(section => {
+            section.classList.remove('show');
+            section.classList.add('hide');
+        });
+
+        // Show the content block that matches the clicked title
+        const matchedSection = document.getElementById(clickedTitle);
+        if (matchedSection) {
+            matchedSection.classList.remove('hide');
+            matchedSection.classList.add('show');
+        }
+    }
+
+
+
+        function searchPage() {
+        const query = document.getElementById("searchQuery").value.toLowerCase().trim();
+
+        // Reset all sections
+        document.querySelectorAll('.main-content-area2 .content-section2').forEach(section => {
+            section.classList.remove('show');
+        section.classList.add('hide');
+        });
+
+        if (query === "") return;
+
+        let foundMatch = false;
+
+        // Loop through each content section
+        document.querySelectorAll('.main-content-area2 .content-section2').forEach(section => {
+            const title = section.querySelector('h2')?.textContent.toLowerCase() || "";
+        const bodyText = section.textContent.toLowerCase();
+
+        if (title.includes(query) || bodyText.includes(query)) {
+            section.classList.add('show');
+        section.classList.remove('hide');
+        if (!foundMatch) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+        foundMatch = true;
+                }
+            }
+        });
+
+        if (!foundMatch) {
+            alert("No matching content found.");
+        }
+    }
+    
+    
+    
+    
+    let mybutton = document.getElementById("myBtn");
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+
+
+</script>
+

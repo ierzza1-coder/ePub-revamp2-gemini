@@ -1,0 +1,156 @@
+﻿@media (max-width: 1280px) {
+
+    .card2-title {
+        font-size: 11px;
+    }
+
+    .card2::before {
+        bottom: -35px;
+        left: -30px;
+        width: 70px;
+        height: 65px;
+    }
+
+    .card2-icon span.icon-badge {
+        width: 12px;
+        height: 50px;
+    }
+
+    .card2-icon .fas {
+        font-size: 15px;
+        color: #000000;
+        line-height: 1;
+    }
+
+    .card2-content {
+        position: relative;
+        z-index: 2;
+        text-align: left;
+        flex-grow: 1;
+        margin-left: 40px;
+        padding-top: 8px;
+        padding-right: 1px;
+    }
+
+    .category-group h2 {
+        margin-left: 12px;
+    }
+
+    .nav-item3{
+        font-size:11px;
+    }
+
+    .nav-item-text3 {
+        font-size: 11px;
+    }
+
+    .navbar3{
+        gap:5px;
+    }
+
+    /*
+    .search-recommendations, .most-searched-dropdown {
+        top: 11%;
+        left: 18%;
+        width: 59%;
+    }*/
+    .updates-section h2 {
+        font-size: 16px;
+    }
+
+    .update-item {
+        font-size: 12px;
+    }
+
+    .updates-image-wrapper {
+        width: 33%;
+        height: 250px;
+    }
+
+    .updates-section {
+        width: 70%;
+        height: 250px;
+    }
+
+    .dropdown-title {
+        font-size: 16px;
+    }
+
+    .starred-manuals-list{
+        font-size:14px;
+    }
+
+
+
+
+}
+
+/*@media (max-width: 990px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        top: 14%;
+        left: 24%;
+        width: 64%;
+    }
+
+}
+
+@media (min-width:1281px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        top: 12%;
+        left: 19.5%;
+        width: 60%;
+    }
+}
+
+
+@media (max-width: 1400px) and (min-width:1281px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        top: 12%;
+        left: 19.5%;
+        width: 60%;
+    }
+}
+
+
+@media (min-width:1700px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        top: 12%;
+        left: 19.5%;
+        width: 60%;
+    }
+}*/
+
+/*@media (min-width: 1900px)  {
+
+    .search-recommendations, .most-searched-dropdown {
+        left: 23%;
+    }
+    
+}
+
+@media (min-width: 2000px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        left: 22.5%;
+    }
+}
+
+@media (min-width: 2200px) {
+
+    .search-recommendations, .most-searched-dropdown {
+        left: 22%;
+    }
+}
+
+
+@media (max-width:1280px) {
+    .search-recommendations, .most-searched-dropdown {
+        top: 28%;
+        left: 27%;
+        width: 59%;
+    }
+}*/
