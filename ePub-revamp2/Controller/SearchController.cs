@@ -1,12 +1,14 @@
 ﻿using ePub.Models;
 using ePub.Services;
 using ePub_revamp2.Services;
+using ePub2.SemanticServices;
 using Examine;
 using Examine.LuceneEngine;
 using Examine.Search;
 using FuzzySharp;
 using HtmlAgilityPack;
 using Lucene.Net.Search;
+using ManualTFIDFDemo.Services;
 using NHunspell;
 using StackExchange.Profiling.Internal;
 using System;
@@ -334,9 +336,6 @@ namespace ePub.Controllers
             }, JsonRequestBehavior.AllowGet);
 
         }
-
-
-
 
 
 
@@ -1199,6 +1198,151 @@ namespace ePub.Controllers
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpPost]
+        public ActionResult BuildVectors()
+        {
+            try
+            {
+                // Step 1: Map file IDs to HTML file paths
+                var files = new Dictionary<int, string>
+                {
+                    {1, @"C:\Users\pbbuser\Desktop\will-dnv3\brproc.html"},
+                    {2, @"C:\Users\pbbuser\Desktop\will-dnv3\brproc1.html"},
+                    {3, @"C:\Users\pbbuser\Desktop\will-dnv3\brproc3.html"},
+                    {4, @"C:\Users\pbbuser\Desktop\will-dnv3\brproc4.html"},
+                    {5, @"C:\Users\pbbuser\Desktop\will-dnv3\contact.html"},
+                    {6, @"C:\Users\pbbuser\Desktop\will-dnv3\default.html"},
+                    {7, @"C:\Users\pbbuser\Desktop\will-dnv3\estate.html"},
+                    {8, @"C:\Users\pbbuser\Desktop\will-dnv3\FAQ.html"},
+                    {9, @"C:\Users\pbbuser\Desktop\will-dnv3\fc-compare.html"},
+                    {10, @"C:\Users\pbbuser\Desktop\will-dnv3\fees.html"},
+                    {11, @"C:\Users\pbbuser\Desktop\will-dnv3\guideG-S.html"},
+                    {12, @"C:\Users\pbbuser\Desktop\will-dnv3\pbtsb.html"},
+                    {13, @"C:\Users\pbbuser\Desktop\will-dnv3\sampleforms.html"},
+                    {14, @"C:\Users\pbbuser\Desktop\will-dnv3\willwrite.html"}
+                };
+
+                // Step 2: Extract text from HTML files
+                var fileTexts = new Dictionary<int, string>();
+                foreach (var kv in files)
+                {
+                    fileTexts[kv.Key] = HtmlTextExtractor.ReadHtmlFile(kv.Value);
+                }
+
+                // Step 3: Build TF-IDF vectors
+                var tfidf = new TfIdfService();
+                tfidf.Build(fileTexts);
+
+                // Save vectors to .txt
+                string vectorFile = @"C:\source\ePub-revamp2 - 1208 - gemini\ePub-revamp2\tfidf_vector.txt";
+                FileVectorStorage.Save(vectorFile, tfidf.GetDocVectors(), tfidf.GetIdf());
+
+                return Content("TF-IDF vectors built and saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                return Content("Error: " + ex.Message);
+            }
+        }
+
+        private readonly  string vectorFile = @"C:\source\ePub-revamp2 - 1208 - gemini\ePub-revamp2\tfidf_vector.txt";
+
+        [HttpGet]
+        public ActionResult SearchVectors(string q, int topN = 3)
+        {
+            if (string.IsNullOrWhiteSpace(q))
+                return Content("Query cannot be empty.");
+
+            try
+            {
+                // Step 4: Load vectors from .txt
+                var tfidf = new TfIdfService();
+                var loadedData = FileVectorStorage.Load(vectorFile);
+                tfidf.SetVectors(loadedData.Item1, loadedData.Item2);
+
+                // Step 5–7: Compute query TF-IDF + cosine similarity + ranking
+                var results = tfidf.Search(q, topN);
+
+                // Step 8: Return top matching file IDs + scores
+                var resultText = "Top matching files:\n";
+
+                object resultItem = null;
+
+                foreach (var r in results)
+                {
+                    resultText += string.Format("File {0} -> Score: {1:F4}\n", r.FileId, r.Score);
+
+
+                    var content = Umbraco.Content(r.FileId);
+                    if (content == null)
+                        return null;
+
+                    var rawBody = content.Value<string>("bodyContent") ?? "";
+                    var plainText = StripHtmlTags(rawBody);
+
+                    var bodyContent = "";
+
+                    if (bodyContent == null)
+                    {
+                        var html = content.Value<string>("bodyContent");
+                        var doc = new HtmlDocument();
+                        doc.LoadHtml(html);
+
+                        var liNodes = doc.DocumentNode.SelectNodes("//li");
+                        string firstTextOnly = "";
+
+                        if (liNodes != null)
+                        {
+                            var firstThree = liNodes.Take(3)
+                                .Select(li =>
+                                {
+                                    var firstTextNode = li.ChildNodes.FirstOrDefault(n => n.NodeType == HtmlAgilityPack.HtmlNodeType.Text);
+                                    return firstTextNode != null
+                                        ? firstTextNode.InnerText.Trim()
+                                        : li.InnerText.Trim();
+                                });
+
+                            // Example: combine with newlines or bullets
+                            bodyContent = string.Join("<br>", firstThree); // Or use "<br>" for HTML
+                        }
+
+                    }
+
+                     resultItem = new
+                    {
+                        name = content.Name,
+                        title = content?.Value<string>("title"),
+                        manualName = content.Parent.Value<string>("title"),
+                        url = content.Url,
+                        directedurl = content.Parent.Url + "#" + content.Name,
+                        score = r.Score,
+                        updateDate = content?.UpdateDate.ToString("d MMMM yyyy"),
+                        bodyContent = bodyContent
+                    };
+                }
+
+                return Json(new
+                {
+                    success = true,
+                    totalResults = 5,
+                    currentPage = 1,
+                    searchSelection = "null",
+                    highestTitle = "null", // ⬅ Add this
+                    pageSize = 5,
+                    didYouMean = "null",
+                    totalPages = 1,
+                    results = resultItem
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Content("Error: " + ex.Message);
+            }
+        }
+
+
 
     }
 }
